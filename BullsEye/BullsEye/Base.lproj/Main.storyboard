@@ -102,6 +102,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="slider" destination="a5y-AO-XgC" id="nQV-IY-AGo"/>
+                        <outlet property="targetLabel" destination="yGg-lb-7KD" id="2rn-8j-6sQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
