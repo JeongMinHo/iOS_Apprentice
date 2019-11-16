@@ -103,6 +103,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="roundLabel" destination="Mp3-1T-HcX" id="m5u-HH-1DL"/>
+                        <outlet property="scoreLabel" destination="ytB-bG-4dK" id="Ik6-LT-yEG"/>
                         <outlet property="slider" destination="a5y-AO-XgC" id="nQV-IY-AGo"/>
                         <outlet property="targetLabel" destination="yGg-lb-7KD" id="2rn-8j-6sQ"/>
                     </connections>
