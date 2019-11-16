@@ -20,6 +20,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var targetLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var roundLabel: UILabel!
+  @IBOutlet weak var startOverButton: UIButton!
   
  
 
@@ -41,25 +42,48 @@ class ViewController: UIViewController {
         difference = 0
       }
       
-      let points = 100 - difference
+      var points = 100 - difference
       score += points
       round += 1
       
+      let title: String
+      if difference == 0 {
+        title = "Perfect !"
+        points += 100
+      } else if difference < 5 {
+        if difference == 1 {
+          points += 50
+        }
+        title = "You alomost had it !"
+      } else if difference < 10 {
+        title = "Pretty Good!"
+      } else {
+        title = "Not even close ..."
+      }
+ 
       
         let message = "You scored \(points) points"
-        let alert = UIAlertController(title: "Hello, World", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Awesome", style: .default, handler: nil)
+      let action = UIAlertAction(title: "OK", style: .default) { (_ ) in
+        self.startNewRound()
+      }
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
       
-      startNewRound()
+      
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
       currentValue = lroundf(slider.value)
     }
+  
+  @IBAction func touchUpInsideStartOver( _ button: UIButton) {
+    score = 0
+    round = 0
+    startNewRound()
+  }
   
   func startNewRound() {
     targetValue = Int.random(in: 1...100)
