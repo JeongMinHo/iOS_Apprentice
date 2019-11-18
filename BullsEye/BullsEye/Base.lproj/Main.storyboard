@@ -64,6 +64,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gGy-TF-69f">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <viewLayoutGuide key="safeArea" id="SgG-HD-dje"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylF-px-WXi">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
