@@ -62,12 +62,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gGy-TF-69f">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gGy-TF-69f">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <viewLayoutGuide key="safeArea" id="SgG-HD-dje"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylF-px-WXi">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ylF-px-WXi">
+                                <rect key="frame" x="32" y="20" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ree-VP-NSo">
                                         <rect key="frame" x="246.5" y="141" width="100" height="37"/>
@@ -173,28 +175,6 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3xW-3Q-eoH"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6x8-xl-yfe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ylF-px-WXi" secondAttribute="trailing" id="JEM-SJ-r5J"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KsT-Rh-m2V"/>
-                            <constraint firstItem="gGy-TF-69f" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="N63-3V-u5q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ylF-px-WXi" secondAttribute="bottom" id="WpY-9W-xpl"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wup-k4-BiP"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YPX-WG-Nzg"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YnL-7a-mIJ"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZF9-kt-Ou2"/>
-                            <constraint firstItem="gGy-TF-69f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZHG-hG-tBz"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="afL-Mi-Jpq"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="azs-yU-XIh"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gbf-qu-4bm"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hhc-AL-dXo"/>
-                            <constraint firstItem="gGy-TF-69f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kts-3H-q1Q"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mK0-04-CHL"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="z2a-BF-nql"/>
-                            <constraint firstItem="ylF-px-WXi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="z5Z-mM-Qfx"/>
-                            <constraint firstItem="gGy-TF-69f" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zHU-50-gYG"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
