@@ -94,3 +94,41 @@ class ChecklistViewController: UITableViewController {
 - Because every app has its own requirements for what its data looks like, the table view must be able to deal with lots of different types of data. Instead of making the table view very complex or requiring that you modify it to suit your own apps, the UIKit designers have chosen to delegate the duty of providing cells to display to another object ,the data source.
 - Usually, components will have just one delegate. But the table view splits up its delegate duties into two seperate helpers: the **UITableViewDataSource** for putting rows in the table, and the **UITableViewDelegate** for handling taps on the rows and several other tasks.
 
+
+
+## Chapter 10: The Data Model
+
+> Model-View-Controller
+
+- MVC is one of the tree fundamental design patterns of iOS. (delegation, target-action)
+- Generally, a view controller handles one screen of the app. If your app has more than one screen, each of these is handled by its own view controller and has its own vies. 
+- The Model-View-Controller pattern states that the object in your app can be split into three groups:
+  - **Model Objects** : These objects contain your data and any operations on the data. The operations that the data model objects perform are sometimes called the *business rules* or the *domain logic*.
+  - **View objects** : These make up the visual part of the app: images, buttons, labels, text fields, and so on. 
+  - **Controller objects** : The controller is the object that connects your data model objects to the views. On iOS, the controller is called the "view controller".
+
+<img width="363" alt="스크린샷 2019-11-21 오전 12 42 37" src="https://user-images.githubusercontent.com/48345308/69253327-d2d19680-0bf7-11ea-856f-f7aa8333a4b8.png">
+
+
+
+<img width="590" alt="스크린샷 2019-11-21 오전 12 45 43" src="https://user-images.githubusercontent.com/48345308/69253607-42478600-0bf8-11ea-993d-8b3c069ced6b.png">
+
+
+
+> Views vs view controllers
+
+- Remember that a view and a view controller are two different things
+- A *View* is an object that draws something on the screen, such as button or a lable. The view is what you see.
+- The *View controller* is what does the work behind the sreens. It is the bridge that sits between your data model and the views.
+
+
+
+> Arrays
+
+- An **array** is an ordered list of objects. If you think of a variable as a container of one value(or one object) than an array is a container for multiple objects.
+- The object inside an array are indexed by numbers, starting at 0 as usual.
+- The array is *ordered*, meaning that the order of the object it contains matter. The object at index 0 always comes before the object at index 1.
+
+
+
+- The process for cleaning up code is called *refactoring* and it's a cycle that never ends.
