@@ -132,3 +132,52 @@ class ChecklistViewController: UITableViewController {
 
 
 - The process for cleaning up code is called *refactoring* and it's a cycle that never ends.
+
+
+
+## Chapter 11: Navigation Controllers
+
+
+
+> Displaying large titles
+
+- With iOS 11, Apple introduced a new navigation bar design with large titles.
+
+~~~swift
+// add the following line to viewDidLoad
+navigationController?.navigationBar.prefersLargeTitles = true
+~~~
+
+- Apple does not recommend using large titles for all of your screens. Rather, their recommendation is to use large titles on your main screen and any other subsequent sreens where it might make sense to have a prominent title.
+
+
+
+> Destroying objects
+
+- When you call items.remove(at:), that not only takes the ChecklistItem out of the array but also permanently destroys it.
+- If there are no more references to an object, it is automatically destroyed.
+- When you pull that ChecklistItem out of the array, the reference goes away and the object is destroyed. Or in compute-speak, it is *deallocated.*
+- If the object is deallocated, that memory becomes avaliable again and will eventually be occupied by new objects. After it has been deleted, the object does not exist in memory any more and you can no longer use it.
+- On older versions of iOS, you had to take care of this memory management by hand.
+- But now, Swift uses a mechanism called **Automatic Reference Counting, or ARC**, to manage the lifetime of the objects in your app.
+
+
+
+> Segue types
+
+- When showing the new view controller above, you opted for a Show segue.
+
+Examples)
+
+- **Show** : Pushes the new view controller onto the navigation stack so that the new view controller is at the top of the navigation stack.(Navigation folders in the Mail app)
+- **Show Detail** : For use in a split view controller. The new view controller replaces the detail view controller of the split view when in an expanded two-column interface. (In Messages, tapping a conversation will show the conversation details)
+- **Present Modally** : Presents the new view controller to cover the previous view controller. (Selecting Touch ID & Passcode in Settings.)
+- **Present as Popover** : When run on an iPad, the new view controller appears in a popover, and tapping anywhere outside of this popover will dismiss it. (Tapping the + button in Calendar)
+- **Custom** : Allows you to implement your own custom segue and have control over its behavior.
+
+
+
+
+
+- The navigation controller is a specaial type of view controller that acts as a container for other view controllers.
+- It comes with a navigation bar and has the ability to easily go from one screen to another, by sliding them in and out of sight.
