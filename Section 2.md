@@ -258,3 +258,86 @@ func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange
   - So, while an NSRange parameter is used by the UITextField in its delegate method, in our Swift code, if we wanted to do any String operations, such as replacingCharacters, then we need a Range value instead.
   - Swift methods generally use Range values and do not understand NSRange values, which is why we coverted the NSRange value to a Swift-understandable Range value.
 - Another example is Array and its Objective-C counterparts NSArray.
+
+
+
+## Chapter 13: Delegates & Protocols
+
+
+
+> The delegate way
+
+- The delegate pattern is commonly used to handle the situation you find yourself in: Screen A opens Screen B.
+- At some point screen B needs to communicate back to screen A, usually when it closes. 
+- The solution is to make screen A the delegate of screen B, so that B can send its messages to A whenever it needs to.
+
+<img width="354" alt="스크린샷 2019-11-21 오전 5 08 47" src="https://user-images.githubusercontent.com/48345308/69274102-02df6080-0c1d-11ea-89e6-3147738b32af.png">
+
+- The cool thing about the delegate pattern is that screen B doesn't really know anything about screen A.
+- It just knows that some object is its delegate, but doesn't really care who that is. Just like how UITableView doesn't really care about your view controller, only that it delivers table view cells when the table view asks for them.
+- This principle, where screen B is independent of screen A and yet can still talk to it, is called *loose coupling* and is considered good software design practice!
+
+<img width="477" alt="스크린샷 2019-11-21 오전 5 13 50" src="https://user-images.githubusercontent.com/48345308/69274446-b6e0eb80-0c1d-11ea-9ec1-56f26a8b2046.png">
+
+- Delegates go hand-in-hand with protocols, a prominent feature of the Swift language.
+
+
+
+> The delegate protocol
+
+~~~swift
+protocol AddItemViewControllerDelegate: class {
+  func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+  func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+}
+~~~
+
+- This defines the AddItemViewControllerDelegate protocol.
+- You should recognize the lines inside the protocol {...} blocks as method declarations.
+- The protocol just lists the names of the methods.
+- From then on, you can refer to ChecklistViewController using the protocol name, instead of class name.
+- It is customary for the delegate methods to have a reference to their owner as the first(or only) parameter.
+
+
+
+- 프로토콜을 선언하고 뒤에 : class를 붙이는 이유
+  - protocol을 선언하는 것이 class를 선언할 때와 비슷하다.
+  - You can have one protocol inherit from another protocol. But you can also specify a particular type of object which can adopt your protocl.
+  - The *class* keyword identifies that we want the AddItemViewControllerDelegate protocl to be limited to class types.
+
+
+
+> Protocols
+
+- In Swift, a protocol doesn't have anything to do with computer networks or meeting royalty. It is simply a name for a group of methods.
+- A protocol normally doesn't implement any of the methods it declares.
+
+
+
+> Notifying the delegate
+
+~~~swift
+weak var delegate: AddItemViewControllerDelegate?
+~~~
+
+- Delegates are usually declared as being *weak* - not a statement of their moral character but a way to describe the relationship between the view controller and its delegate.
+- Delegates are also optional.
+- You may be wondering why the delegate would ever be nil.
+  1. Often, delegates are truly optional; a UITableView works fine even if you don't implement any of its delegate method.
+  2. More importantly, when AddItemViewController is loaded from the storyboard and instantiated(예시), it won't know right away who its delegate is. Between the time the view controller is loaded and the delegate is assigned, the delegate variable will be nil. And variables that can be nil, even if it is only temporary, must be optionals. (**중요)**
+
+
+
+> Optionals
+
+- Variables and constants in Swift must alyways have a value.
+- In other programming languages the special symbol nil or NULL is often used to indicate that a variable has no value.
+- Sometimes a variable does need to have "no value". In that case you can make it an *optional*.
+- Only variables that are made optional can have the value nil.
+
+~~~swift
+delegate?.addItemViewControllerDidCancel(self)
+~~~
+
+- Here the ? tells Swift not to send the message if delegate is nil. -> Is there a delegate? Then send the messages.
+- This practice is called *optional chaining* and it's used a lot in Swift.
