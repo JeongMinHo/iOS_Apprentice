@@ -181,3 +181,80 @@ Examples)
 
 - The navigation controller is a specaial type of view controller that acts as a container for other view controllers.
 - It comes with a navigation bar and has the ability to easily go from one screen to another, by sliding them in and out of sight.
+
+
+
+## Chapter 12: Add Item Screen
+
+
+
+> Static table cells
+
+- Table View는 static cell과 dynamic cell이 있다.
+- Static은 말그대로 정적인 테이블뷰로서 파워포인트 그리듯이 스토리보드에서 형태와 내용을 입력하면 그대로 출력되게 된다.
+- Dynamic은 반대로 데이터를 입력 받아서 내용과 형태가 바뀌는 동적인 셀이다.
+- 예를 들어, 아이폰의 설정 화면은 Static cell 이고, 페이스북의 feed들은 Dynamic cell이다.
+- You use static cells when you know beforehand how many sections and rows the table view will have.
+- With static cells, you can design the rows directly in the storyboard. 
+- For a table with static cells you don't need to provide a data source, and you can hook up the labels and other controls from the cells directly to outlets on the view controller.
+
+
+
+> Returning to sender
+
+- You use *return* to send a value from a method back to the method that called it.
+
+<img width="533" alt="스크린샷 2019-11-21 오전 3 12 03" src="https://user-images.githubusercontent.com/48345308/69265494-b2600700-0c0c-11ea-8caa-7c46ae6779bc.png">
+
+- Methods call other methods and receive values in return.
+- You cannot return any value. The value you return must be of the data type that is specified after the -> arrow that follows the method name.
+
+~~~swift
+override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return nil
+}
+~~~
+
+- That's what the ? behind IndexPath is for: The question mark tells the Swift compiler that you can also return nil from this method.
+- Note that returning nil from a method is only allowed if there is a question mark behind the return type.
+- A type declaration with a question mark behind it is known as an **optional.**
+- The special value nil represents "no value" but it's used to mean different things throughout the iOS SDK. Sometimes it means "*nothing found* or "*don't do anything*.
+
+
+
+> Becoming a delegate
+
+- Delegates are used everywhere in the iOS SDK, so it's good to remember that it always takes three steps to become a delegate.
+
+  1) You declare yourself capable of being a delegate. To become the delegate for UITextField you need to include UITextFieldDelegate in the class line for the view controller. This tells the complier that this particular view controller can actually handle the notification messages that the text field sends to it.
+
+  2) You let the object in question, in this case the UITextField, know that the view controller wishes to become its delegate. If you forget to tell the text field that it has a delegate, it will never send you any notifications.
+
+  3) Implement the delegate methods. 
+
+
+
+> NSRange vs Range and NSString vs String
+
+~~~swift
+func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let oldText = textField.text!
+    let stringRange = Range(range, in:oldText)!
+    let newText = oldText.replacingCharacters(in: stringRange, with: string)
+    
+    if newText.isEmpty {
+      doneBarButton.isEnabled = false
+    } else {
+      doneBarButton.isEnabled = true
+    }
+   	return true
+  }
+~~~
+
+- In the above code, you get a parameter as NSRange and you convert it to a Range value.
+- A range object gives you a range of values, or in this case, a range of characters - with a lower bound and an upper bound.
+- So, why did we convert the original NSRange value to a Range value? 
+  - NSRange is an Objective-C structure whereas Range is its Swift equivalent - they are simila, but not exactly the same.
+  - So, while an NSRange parameter is used by the UITextField in its delegate method, in our Swift code, if we wanted to do any String operations, such as replacingCharacters, then we need a Range value instead.
+  - Swift methods generally use Range values and do not understand NSRange values, which is why we coverted the NSRange value to a Swift-understandable Range value.
+- Another example is Array and its Objective-C counterparts NSArray.

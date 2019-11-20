@@ -8,21 +8,62 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController {
+class AddItemViewController: UITableViewController, UITextFieldDelegate {
+  
+  
+  // view가 appear 하면 키보드 자동으로 올라오게 하는 부분
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    textField.becomeFirstResponder()
+  }
 
     override func viewDidLoad() {
         super.viewDidLoad()
       navigationItem.largeTitleDisplayMode = .never
-
     }
+  
+  // MARK: - Outlets
+  @IBOutlet weak var textField: UITextField!
+  @IBOutlet weak var doneBarButton: UIBarButtonItem!
 
-  //MARK: - Actions
+  // MARK: - Actions
   @IBAction func cancel() {
-    navigationController?.popViewController(animated: true)
+    dismiss(animated: true, completion: nil)
   }
   
   @IBAction func done() {
-    navigationController?.popViewController(animated: true)
+    
+    print("Contents of the text field : \(textField.text!)")
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // MARK: - Table View Delegates
+  override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return nil
+  }
+  
+  // MARK: - Text Field Delegates
+  
+  // textfield에 아무것도 입력되지 않았으면 done button 비활성화하는 메소드
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let oldText = textField.text!
+    let stringRange = Range(range, in:oldText)!
+    let newText = oldText.replacingCharacters(in: stringRange, with: string)
+    
+//    if newText.isEmpty {
+//      doneBarButton.isEnabled = false
+//    } else {
+//      doneBarButton.isEnabled = true
+//    }
+    
+    // 위를 수정한 코드
+    doneBarButton.isEnabled = !newText.isEmpty
+    return true
+  }
+  
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    doneBarButton.isEnabled = false
+    return true
   }
   
 
