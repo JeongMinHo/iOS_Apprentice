@@ -341,3 +341,34 @@ delegate?.addItemViewControllerDidCancel(self)
 
 - Here the ? tells Swift not to send the message if delegate is nil. -> Is there a delegate? Then send the messages.
 - This practice is called *optional chaining* and it's used a lot in Swift.
+
+
+
+> Delegates in five easy steps
+
+These are the steps for setting up the delegate pattern between two objects, where object A is the delegate for object B, and object B will send messages back to A.
+
+1. Define a delegate protocol for object B
+2. Give object B an optional delegate variable. This variable should be weak.
+3. Update object B to send messages to its delegate when something interesting happens, such as the user pressing the Cancel or Done buttons, or when it needs a piece of information. You write delegate?.methodName(self, ...)
+4. Make object A conform to the delegate protocol. It should put the name of the protocol in its class line and implement the methods from the protocol.
+5. Tell object B that object A is now its delegate.
+
+
+
+> Weak
+
+- Relationships between objects can be weak or strong.
+- You use weak relationships to avoid what is known as an *ownership cycle.*
+- When object A has a strong reference to object B, and at the same time object B also has a strong reference back to A, then these two objects are involoved in a dangerous kind of romance : an ownership cycle.
+
+<img width="323" alt="스크린샷 2019-11-23 오전 12 23 28" src="https://user-images.githubusercontent.com/48345308/69437900-7b623080-0d87-11ea-9a58-33e575b17e12.png">
+
+- To avoid ownership cycles you. can make one of these references **weak**.
+- In the case of a view controller and its delegate, screen A usually has a strong reference to screen B, but B only has a weak reference back to its delegate A.
+
+<img width="369" alt="스크린샷 2019-11-23 오전 12 25 16" src="https://user-images.githubusercontent.com/48345308/69438023-ba908180-0d87-11ea-84d0-4a1313bb2257.png">
+
+- Such cycles can occure in other situations too, but they are most common with delegates. Therefore, delegates are always maed weak.
+- There is another relationship type, *unowned*, that is similar to weak and can be used for delegates too. The difference is that weak variables are allowed to become nil again.
+- *@IBOutlets* are usually also declared with the weak keyworld. This isn't done to avoid an ownership cycle, but to make it clear that the view controller isn't really the owner of the views from the outlets.
