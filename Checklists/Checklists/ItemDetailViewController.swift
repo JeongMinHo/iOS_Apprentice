@@ -9,12 +9,12 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: class {
-    func itemDetailViewControllerDidCancel(_ controller: ItemDetailV)
-    func itemDetailViewController(_ controller: ItemDetailV, didFinishAdding item: ChecklistItem)
-    func itemDetailViewController(_ controller: ItemDetailV, didFininshEditing item: ChecklistItem)
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFininshEditing item: ChecklistItem)
 }
 
-class ItemDetailV: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
   
   
     // view가 appear 하면 키보드 자동으로 올라오게 하는 부분

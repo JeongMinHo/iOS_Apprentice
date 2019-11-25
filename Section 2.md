@@ -418,3 +418,171 @@ if let temporaryConstant = optionalVariable {
 
 - Most IDEs(or Integrated Development Environments) such as Xcode have a feature named *refactoring* , which allows you to change the name of a class, method, or variable throughtout the entire project, safely.
 
+
+
+## Chapter 15: Saving & Loading
+
+
+
+> The need for data persistence
+
+- Thanks to the multitasking nature of iOS, an app stays in memory when you close it and go back to the home screen or switch to another app.
+- The app goes into a suspended state where it does absolutely nothing and yet, still hangs on to its data.
+- During normal usuage, users will never truly terminate an app, just suspend it.
+- However, the app can still be terminated when iOS runs out of avaliable working memory, as iOS will terminate any suspended apps in order to free up memory when necenssary.
+- You will need to persist this data in a file on the device's long-term flash storage.
+
+<img width="622" alt="스크린샷 2019-11-26 오전 4 26 36" src="https://user-images.githubusercontent.com/48345308/69571238-eff5d300-1004-11ea-9398-382e5dfa8ea2.png">
+
+
+
+> The documents folder
+
+- iOS apps live in a sheltered environment known as the *sandbox*.
+- Each app has its own folder for storing files but cannot access the directories of files belonging to any other app.
+- This is a security measure, designed to prevent malicious software such as viruses from doing any damage.
+- Your apps can store files in the "Documents" folder in the app's sandbox.
+- The contents of the Document folder are backed up when the user syncs their device with iTunes or iCloud.
+
+
+
+> Getting the save file paht
+
+~~~swift
+func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+~~~
+
+- documentsDirectory() method is something i've added for convenience. There is no standard method you can call to get the full path to the Document folder, so I rolled my own. (?)
+- The dataFilePath() method uses documentsDirectory() to construct the full path to the file that will store the checklist items. 
+- This file is named **Checklists.plist** and it lives inside the Document folder.
+- Notice that both methods return a URL object. iOS uses URLs to refer to files in its filesystem. Where websites use http:// or https:// URLs, to refer to a file you use a file:// URL.
+
+
+
+<img width="418" alt="스크린샷 2019-11-26 오전 5 03 00" src="https://user-images.githubusercontent.com/48345308/69573717-06525d80-100a-11ea-9da2-74b289e2f0db.png">
+
+- The Documents folder where the app will put its data files. 
+- The Library folder has cache files and preferences files. The contents of this folder are managed by the *operating system*.
+- The SystemData folder, as the name implies, is for use by the operating system to store any system level information relevant to the app.
+- The tmp folder is for temporary files. Sometimes apps need to create files for temporary usage. You don't want these to clutter(어지럽히다) up your Documents folder, so tmp is a good place to put them. iOS will clear out this folder from time to time.
+
+
+
+> .plist files
+
+- What is a **.plist** file?
+- Info.plist contains several configuration options that give iOS additional information about the app, such as what name to display under the app's icon on the home screen.
+- ".plist" stands for Porperty List and it is an XML file format that stores structured data, usually in the form of a list of settings and their values. 
+- To save the checklist items, you'll use Swift's *codable* protcol, which lets objects which support the Codable protocol to store themselves in a structured file format.
+- When you add a view controller to a storyboard, Xcode uses the NSCoder(codable) system to write this object to a file(encoding).
+- Then when your application starts up, it uses NSCoder again to read the objects from the storyboard file(decoding).
+
+
+
+<img width="503" alt="스크린샷 2019-11-26 오전 5 16 15" src="https://user-images.githubusercontent.com/48345308/69574588-e9b72500-100b-11ea-89f1-f171da21736e.png">
+
+- The process of converting objects to files and back again is also known as **serialization**.
+
+
+
+> Saving data to a file
+
+~~~swift
+func saveChecklistItems() {
+  			// 1
+        let encoder = PropertyListEncoder()
+  			// 2 
+        do {
+          // 3
+            let data = try encoder.encode(items)
+          // 4
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+          // 5
+        } catch {
+          // 6
+            print("Eroor encoding item array: \(error.localizedDescription)")
+        }
+    }
+~~~
+
+1. First, create an instance of PropertyListEncoder which will encode the items array, and all the ChecklistItems in it, into some sort of binary data format that can be written to a file.
+2. The *do* keyword, which you have not encountered before, sets up a block of code to catch Swift *errors*. Swift handles a errors under certain conditions by *throwing* an error. The do keyword indicates the start of such a block. You will see the error catching code after comment #5, where the *catch* keyword can be seen.
+3. The encoder you created earlier is used to try to encode the items array. The encode methods throws a Swift error if it is unable to encode the data for some reason. The try keyword indicates that the call to encode can fail and if that happens, that it will throw an error.
+4. If the data constant was successfully created by the call to encode in the previous line, then you write the data to a file using the file path returned by a call to dataFilePath().
+5. The catch statement indicates the block of code to be executed if an error was thrown by any line of code in the enclosing do block.
+6. Handle the caught error.
+
+- When you create a do-catch block of code, you can explicitly check for specific types of errors.
+- Swift will automatically populate a local variable named error, so you can simply refer to that error variable in any code you write in the catch block.
+
+
+
+> "NS" objects
+
+- Objects whose name start with the "NS" prefix, like NSObject, NSString, or NSCoder, are provided by the Foundation framework.
+- NS stands for **N**ext**S**tep, the operating system from the 1990's that later became Mac OS X and which also forms the basis of iOS.
+
+
+
+> Reading data from a file
+
+~~~swift
+func loadChecklistItems() {
+  			// 1
+        let path = dataFilePath()
+  			// 2
+        if let data = try? Data(contentsOf: path) {
+          	// 3
+            let decoder = PropertyListDecoder()
+            do {
+              	// 4
+                items = try decoder.decode([ChecklistItem].self, from: data)
+            } catch {
+                print("Error Decoding item array: \(error.localizedDescription)")
+            }
+        }
+    }
+~~~
+
+1. First, you put the results of dateFilePath() in a temporary constant named path.
+2. Try to load the contents of Checklist.plist into a new Data object. The try? commands attempts to create the Data object, but returns nil if it fails. That's why you put it in an if let statement.
+3. When the app does find a Checklist.plist file, you'll load the entire array and its contents from the file using a PropertyListDecoder. So create the decoder instance.
+4. Load the saved data back into items using the decoder's decode methods. The only item of interest here would be the first parameter passed to decode.
+
+
+
+> Initializers
+
+- Methods named init are special in Swift.
+- They are only used when you're creating new objects, to make those new objects ready for use.
+
+~~~swift
+let item = ChecklistItem()
+~~~
+
+- Swift first allocates a chunk of memory big enought to hold the new object and then calls ChecklistItem's init() method with no parameters.
+
+- It is pretty comman for objects to have more than one init mehtod. Which one is used depends on the circumstances.
+
+- This is the standard way to write an init method:
+
+  ~~~swift
+  init() {
+    // Put values into your instance variables and constants.
+    super.init()
+    // Other initialization code, such as calling methods, goes here.
+  }
+  ~~~
+
+- Note that unlike other methods, init does not have the func keyword.
+- Sometimes you'll see it written as override init or required init?. That is necessary when you're adding the init method to an object that is a subclass of some other object.
+- The question mark is for when init? can potentially fail and reuturn a nil value instead of a real object.
+- Inside the init method, you first need to make sure that all your instance variable and constants have a value.
+- Once you've given all your instance variables and constants values, you call super.init() to initialize the object's superclass.
