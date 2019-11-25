@@ -9,11 +9,12 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: class {
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailV)
+    func itemDetailViewController(_ controller: ItemDetailV, didFinishAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailV, didFininshEditing item: ChecklistItem)
 }
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailV: UITableViewController, UITextFieldDelegate {
   
   
     // view가 appear 하면 키보드 자동으로 올라오게 하는 부분
@@ -29,7 +30,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         if let item = itemToEdit {
             title = "Edit Item"
             textField.text = item.text
-            
+            doneBarButton.isEnabled = true
         }
     }
   
@@ -42,14 +43,19 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Actions
     @IBAction func cancel() {
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.itemDetailViewControllerDidCancel(self)
     }
   
     @IBAction func done() {
-        let item = ChecklistItem()
-        item.text = textField.text!
-    
-        delegate?.addItemViewController(self, didFinishAdding: item)
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFininshEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFinishAdding: item)
+        }
+        
     }
   
     // MARK: - Table View Delegates

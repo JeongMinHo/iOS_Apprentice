@@ -391,3 +391,30 @@ if let temporaryConstant = optionalVariable {
 }
 ~~~
 
+
+
+> Sending data between view controllers
+
+- We've talkded about screen B(the Add/Edit Item screen) passing data back to screen A(the Checklist screen) via delegates.
+- But here, you're passing a piece of data the other way around - from screen A to screen B - namely, the ChecklistItem to edit.
+
+
+
+- Data transfer between view controllers works two ways:
+
+  1) From A to B. When screen A opens screen B, A can give B the data it needs. You simply make a new instance variable in B's view controller. Screen A then puts an object into this property right before it makes screen B visible, usually in prepare(for:sender:).
+
+  2) Form B to A. To pass data back from B to A you use a delegate.
+
+<img width="383" alt="스크린샷 2019-11-26 오전 1 37 08" src="https://user-images.githubusercontent.com/48345308/69559413-435c2700-0fed-11ea-8f44-20d9d371fb62.png">
+
+
+
+- Making iOS apps is all about creating view controllers and sending messages between them, so you want this to become second nature.
+
+
+
+> Renaming the view controller
+
+- Most IDEs(or Integrated Development Environments) such as Xcode have a feature named *refactoring* , which allows you to change the name of a class, method, or variable throughtout the entire project, safely.
+

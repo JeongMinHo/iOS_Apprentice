@@ -57,18 +57,18 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
       }
     }
   
-  func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
-    let label = cell.viewWithTag(1000) as! UILabel
-    label.text = item.text
-  }
+    func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
+        let label = cell.viewWithTag(1000) as! UILabel
+        label.text = item.text
+    }
 
 
-  // MARK: - Table View Data Source
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
-  }
+    // MARK: - Table View Data Source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
   
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
     
@@ -88,7 +88,7 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     if let cell = tableView.cellForRow(at: indexPath) {
       let item = items[indexPath.row]
       item.toggleChecked()
-    configureCheckmark(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
 
     }
     
@@ -102,20 +102,30 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     tableView.deleteRows(at: indexPaths, with: .automatic)
   }
   
-  // MARK: - Add Item viewController Delegates
-  func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
-    navigationController?.popViewController(animated: true)
-  }
+    // MARK: - Add Item viewController Delegates
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailV) {
+        navigationController?.popViewController(animated: true)
+    }
   
-  func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
-    let newRowIndex = items.count
-    items.append(item)
+    func itemDetailViewController(_ controller: ItemDetailV, didFinishAdding item: ChecklistItem) {
+        let newRowIndex = items.count
+        items.append(item)
     
-    let indexPath = IndexPath(row: newRowIndex, section: 0)
-    let indexPaths = [indexPath]
-    tableView.insertRows(at: indexPaths, with: .automatic)
-    navigationController?.popViewController(animated: true)
-  }
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func itemDetailViewController(_ controller: ItemDetailV, didFininshEditing item: ChecklistItem) {
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: item)
+            }
+        }
+        navigationController?.popViewController(animated: true)
+    }
   
 //   MARK: -Actions
 //  @IBAction func addItem() {
@@ -133,9 +143,16 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "AddItem" {
-      let controller = segue.destination as! AddItemViewController
+      let controller = segue.destination as! ItemDetailV
       
       controller.delegate = self
+    } else if segue.identifier == "EditItem" {
+        let controller = segue.destination as! ItemDetailV
+        controller.delegate = self
+        
+        if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+            controller.itemToEdit = items[indexPath.row]
+        }
     }
   }
 }
