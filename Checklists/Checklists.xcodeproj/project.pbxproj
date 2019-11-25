@@ -60,17 +60,25 @@
 		E3223A442382659F00EC6825 /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
-				E35D44172385B33A00505BED /* AddItemViewController.swift */,
+				E35D441A2389267F00505BED /* New Group */,
 				E3223A452382659F00EC6825 /* AppDelegate.swift */,
-				E3223A472382659F00EC6825 /* SceneDelegate.swift */,
-				E3223A492382659F00EC6825 /* ChecklistViewController.swift */,
-				E3223A4B2382659F00EC6825 /* Main.storyboard */,
+				E35D44172385B33A00505BED /* AddItemViewController.swift */,
 				E3223A4E238265A100EC6825 /* Assets.xcassets */,
-				E3223A50238265A100EC6825 /* LaunchScreen.storyboard */,
-				E3223A53238265A100EC6825 /* Info.plist */,
 				E35D441523859DE700505BED /* ChecklistItem.swift */,
+				E3223A492382659F00EC6825 /* ChecklistViewController.swift */,
+				E3223A50238265A100EC6825 /* LaunchScreen.storyboard */,
+				E3223A4B2382659F00EC6825 /* Main.storyboard */,
+				E3223A472382659F00EC6825 /* SceneDelegate.swift */,
 			);
 			path = Checklists;
+			sourceTree = "<group>";
+		};
+		E35D441A2389267F00505BED /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				E3223A53238265A100EC6825 /* Info.plist */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +302,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DWAQ5NDN9;
-				INFOPLIST_FILE = Checklists/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Checklists/New Group/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DWAQ5NDN9;
-				INFOPLIST_FILE = Checklists/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Checklists/New Group/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

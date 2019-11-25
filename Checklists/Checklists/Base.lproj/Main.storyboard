@@ -15,27 +15,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="NPm-Sl-bb7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="NPm-Sl-bb7">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NPm-Sl-bb7" id="V1v-qC-yvf">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="√" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2U-Gf-f1K">
+                                            <rect key="frame" x="0.0" y="10" width="13" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="13" id="MhW-h2-hqZ"/>
+                                                <constraint firstAttribute="height" constant="27" id="rvJ-qe-z7S"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-n3-EQT">
-                                            <rect key="frame" x="16" y="11" width="343" height="21.5"/>
+                                            <rect key="frame" x="21" y="13" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="QwA-qH-XHm"/>
+                                                <constraint firstAttribute="height" constant="21" id="szK-MW-BvI"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="top" secondItem="V1v-qC-yvf" secondAttribute="topMargin" id="6Yw-Dy-0h7"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="DRq-n3-EQT" secondAttribute="trailing" constant="-32" id="Lfc-VV-EKU"/>
-                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="centerY" secondItem="V1v-qC-yvf" secondAttribute="centerY" id="iJg-jg-vl4"/>
-                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="leading" secondItem="V1v-qC-yvf" secondAttribute="leadingMargin" id="ppF-An-jfH"/>
+                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="centerY" secondItem="N2U-Gf-f1K" secondAttribute="centerY" id="Zkd-gc-GAH"/>
+                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="leading" secondItem="N2U-Gf-f1K" secondAttribute="trailing" constant="8" id="nBh-Zs-I1G"/>
+                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="centerY" secondItem="N2U-Gf-f1K" secondAttribute="centerY" id="zWS-bD-crw"/>
+                                        <constraint firstItem="DRq-n3-EQT" firstAttribute="top" secondItem="V1v-qC-yvf" secondAttribute="top" constant="13" id="zvC-1r-ugG"/>
+                                        <constraint firstItem="N2U-Gf-f1K" firstAttribute="leading" secondItem="V1v-qC-yvf" secondAttribute="leading" id="zzr-nz-bKW"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ieb-LL-d4c" kind="show" identifier="EditItem" trigger="accessoryAction" id="VKc-PZ-ERW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -139,4 +157,7 @@
             <point key="canvasLocation" x="-55.200000000000003" y="-235.23238380809596"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VKc-PZ-ERW"/>
+    </inferredMetricsTieBreakers>
 </document>

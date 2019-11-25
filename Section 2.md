@@ -372,3 +372,22 @@ These are the steps for setting up the delegate pattern between two objects, whe
 - Such cycles can occure in other situations too, but they are most common with delegates. Therefore, delegates are always maed weak.
 - There is another relationship type, *unowned*, that is similar to weak and can be used for delegates too. The difference is that weak variables are allowed to become nil again.
 - *@IBOutlets* are usually also declared with the weak keyworld. This isn't done to avoid an ownership cycle, but to make it clear that the view controller isn't really the owner of the views from the outlets.
+
+
+
+## Chapter 14: Edit Items
+
+
+
+> if let
+
+- *Unwrap the optional*
+
+~~~swift
+if let temporaryConstant = optionalVariable {
+  // temporaryConstant now contains the unwrapped value of the 
+  // optional variable. temporaryConstant is only avaliable from 
+  // within this if block.
+}
+~~~
+

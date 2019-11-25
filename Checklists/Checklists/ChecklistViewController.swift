@@ -47,18 +47,15 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
   
   
   
-  func configureCheckmark(for cell: UITableViewCell, at indexPath: IndexPath) {
-    
-    let item = items[indexPath.row]
-  
-    if item.checked {
-      cell.accessoryType = .checkmark
-    } else {
-      cell.accessoryType = .none
+    func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
+      let label = cell.viewWithTag(1001) as! UILabel
+      
+      if item.checked {
+        label.text = "√"
+      } else {
+        label.text = ""
+      }
     }
-    
-    tableView.deselectRow(at: indexPath, animated: true)
-  }
   
   func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
     let label = cell.viewWithTag(1000) as! UILabel
@@ -78,9 +75,11 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     let item = items[indexPath.row]
     
     configureText(for: cell, with: item)
-    configureCheckmark(for: cell, at: indexPath)
+    configureCheckmark(for: cell, with: item)
     return cell
   }
+  
+  
   
     
   // MARK:- Table View delegate
@@ -89,7 +88,8 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     if let cell = tableView.cellForRow(at: indexPath) {
       let item = items[indexPath.row]
       item.toggleChecked()
-      configureCheckmark(for: cell, at: indexPath)
+    configureCheckmark(for: cell, with: item)
+
     }
     
     tableView.deselectRow(at: indexPath, animated: true)
@@ -117,10 +117,10 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     navigationController?.popViewController(animated: true)
   }
   
-  // MARK: -Actions
+//   MARK: -Actions
 //  @IBAction func addItem() {
 //    let newRowIndex = items.count
-//    
+//
 //    let item = ChecklistItem()
 //    item.text = "I am a new row"
 //    items.append(item)
