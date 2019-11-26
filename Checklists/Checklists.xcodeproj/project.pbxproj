@@ -17,6 +17,7 @@
 		E35D44182385B33A00505BED /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35D44172385B33A00505BED /* ItemDetailViewController.swift */; };
 		E39506B8238D7982003E42DC /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39506B7238D7982003E42DC /* AllListsViewController.swift */; };
 		E39506BA238D86FD003E42DC /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39506B9238D86FD003E42DC /* Checklist.swift */; };
+		E39506BC238D9BCE003E42DC /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39506BB238D9BCE003E42DC /* ListDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E35D44172385B33A00505BED /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		E39506B7238D7982003E42DC /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		E39506B9238D86FD003E42DC /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		E39506BB238D9BCE003E42DC /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				E3223A452382659F00EC6825 /* AppDelegate.swift */,
 				E35D44172385B33A00505BED /* ItemDetailViewController.swift */,
 				E39506B7238D7982003E42DC /* AllListsViewController.swift */,
+				E39506BB238D9BCE003E42DC /* ListDetailViewController.swift */,
 				E3223A4E238265A100EC6825 /* Assets.xcassets */,
 				E35D441523859DE700505BED /* ChecklistItem.swift */,
 				E39506B9238D86FD003E42DC /* Checklist.swift */,
@@ -166,6 +169,7 @@
 				E3223A482382659F00EC6825 /* SceneDelegate.swift in Sources */,
 				E35D441623859DE700505BED /* ChecklistItem.swift in Sources */,
 				E39506BA238D86FD003E42DC /* Checklist.swift in Sources */,
+				E39506BC238D9BCE003E42DC /* ListDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

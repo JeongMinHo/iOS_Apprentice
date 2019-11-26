@@ -586,3 +586,81 @@ let item = ChecklistItem()
 - The question mark is for when init? can potentially fail and reuturn a nil value instead of a real object.
 - Inside the init method, you first need to make sure that all your instance variable and constants have a value.
 - Once you've given all your instance variables and constants values, you call super.init() to initialize the object's superclass.
+
+
+
+## Chapter 16: Lists
+
+> The many ways to make table view cells
+
+~~~swift
+let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
+~~~
+
+- But here you have three separate bits of code to accomplish the same:
+
+~~~swift
+// At the top of the class implementation
+let cellIdentifier = "ChecklistCell"
+
+// In viewDidLoad
+tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+
+// Int tableView(_: cellForRowAt:)
+let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
+~~~
+
+1. Using static cells. Static cells are limited to screens where you know in advance which cells you'll have. The big advantage with static cells is that you don't need to provide any of the data source methods.
+2. Using a *nil* file. A nib(also known as a XIB) is like a mini storyboard that only contains a single customized UITablaViewCell object. This is very similar to using prototype cells, except that you can do it outside of a storyboard.
+
+- Sometimes someone creates a new cell for every row rather than trying to reuse cells by dequeing them. Don't do that! 
+  - Always ask the table view first whether it has a cell avaliable that can be recycled, using one of the dequeReusableCell methods.
+- Creating a new cell for each row will cause your app to slow donw, as object creation is slower than simply re-using an existing object.
+
+
+
+> prepare(for: sender: ) method
+
+~~~swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destination as! ChecklistViewVontroller
+            controller.checklist = sender as? Checklist
+        }
+}
+~~~
+
+- prepare(for: sender:) is called right before a segue happens from a view controller. Here you get a chance to set the properties of the new view controller before it becomes visible.
+- Inside prepare(for: sender: ), you need to pass the ChecklistViewController the Checklist object from the row that the user tapped. -> that's why you put that object in the sender parameter earlier.
+
+<img width="609" alt="스크린샷 2019-11-27 오전 1 58 01" src="https://user-images.githubusercontent.com/48345308/69655175-59371e00-10b9-11ea-87d5-34945afbcd8b.png">
+
+- This sequence of events is why the checklist property is declared as Checklist!
+
+- You don't have to write if let to unwrap it. Such *implicity unwrapped* optionals should be used sparingly and with care, as they do not have any of the anti-crash protection that normal optionals do.
+
+
+
+- Note that passing the Checklist object to the ChecklistViewController does not make a copy of it. 
+- You only pass the view controller a *reference* to that object - any changes the user makes to that Checklist objects are also senn by AllListsViewController.
+
+
+
+> Typing Casts
+
+~~~swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destination as! ChecklistViewVontroller
+            controller.checklist = sender as? Checklist
+        }
+    }
+~~~
+
+- A **type cast** tells Swift to interpret a value as having a different data type.
+
+- Here, sender has type Any? meaning that it can be any sort of a object: a UIBarButtonItem, a UITableViewCell, or in this case, a Checklist.
+- But the controller.checklist property always expects a Checklist object- it wouldn't know what to do with a UITableVieCell... Hence, Swift demands that you only put Checklist objects into the checklisty property.
+- By writing sender as? Checklist, you tell Swift that it can safely treat sender as a Checklist object, if it can be used as a Checklist object, or to send nil if there is an issue.
+- The main reason you need all these type cast is for interoperability(정보 처리 상호 운용) with the iOS frameworks that are written in Objective-C.
+- Swift is less forgiving about types than Objective-C and requires you to be much more explicit about specifying the types of the various data items you work with.

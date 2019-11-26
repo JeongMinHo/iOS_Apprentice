@@ -19,14 +19,86 @@
                             <outlet property="delegate" destination="4TV-fy-pVa" id="HMC-ov-dCe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" largeTitleDisplayMode="always" id="Qox-dO-wto"/>
+                    <navigationItem key="navigationItem" title="Checklists" largeTitleDisplayMode="always" id="Qox-dO-wto">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="y1b-Ag-JsB">
+                            <connections>
+                                <segue destination="FWq-Ld-PSU" kind="show" identifier="EditChecklist" id="h6w-oY-KQp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="9lK-1R-pgb" kind="show" identifier="ShowChecklist" id="9xe-6a-1Qp"/>
+                        <segue destination="FWq-Ld-PSU" kind="show" identifier="AddChecklist" id="bJ2-KX-jup"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXH-GW-ug9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="-976"/>
+            <point key="canvasLocation" x="-112" y="-236"/>
+        </scene>
+        <!--Add Checklist-->
+        <scene sceneID="DCP-26-Z1h">
+            <objects>
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="FWq-Ld-PSU" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="bFb-kR-qvQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="FMH-vs-yyu">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lBs-MH-1t4">
+                                        <rect key="frame" x="0.0" y="18" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lBs-MH-1t4" id="F1a-Oy-H9t">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TUx-L7-iVb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="FWq-Ld-PSU" eventType="editingDidEndOnExit" id="dKW-7h-9N6"/>
+                                                        <outlet property="delegate" destination="FWq-Ld-PSU" id="QcY-hK-5yg"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="TUx-L7-iVb" secondAttribute="bottom" id="8Kj-9w-eay"/>
+                                                <constraint firstItem="TUx-L7-iVb" firstAttribute="top" secondItem="F1a-Oy-H9t" secondAttribute="top" id="PuY-CM-hE9"/>
+                                                <constraint firstAttribute="trailing" secondItem="TUx-L7-iVb" secondAttribute="trailing" id="TTu-Zo-cgp"/>
+                                                <constraint firstItem="TUx-L7-iVb" firstAttribute="leading" secondItem="F1a-Oy-H9t" secondAttribute="leading" id="yzu-ti-c6y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="FWq-Ld-PSU" id="61D-jJ-jfs"/>
+                            <outlet property="delegate" destination="FWq-Ld-PSU" id="uf3-G2-XA3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="gIe-n6-y6n">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="gkW-3P-goh">
+                            <connections>
+                                <action selector="cancel" destination="FWq-Ld-PSU" id="UC6-Ol-DP0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="0S7-ym-iQc">
+                            <connections>
+                                <action selector="done" destination="FWq-Ld-PSU" id="g99-nD-BqK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="0S7-ym-iQc" id="d3Y-Rk-W2w"/>
+                        <outlet property="textField" destination="TUx-L7-iVb" id="BEf-sd-8iK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNB-Lh-l1N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113" y="476"/>
         </scene>
         <!--Name of the Checklist-->
         <scene sceneID="kFE-RN-m46">
@@ -176,10 +248,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuT-Mz-ydi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.200000000000003" y="-235.23238380809596"/>
+            <point key="canvasLocation" x="-1071" y="-236"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VKc-PZ-ERW"/>
+        <segue reference="h6w-oY-KQp"/>
     </inferredMetricsTieBreakers>
 </document>
