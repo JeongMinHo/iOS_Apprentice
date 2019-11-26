@@ -15,6 +15,8 @@
 		E3223A52238265A100EC6825 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3223A50238265A100EC6825 /* LaunchScreen.storyboard */; };
 		E35D441623859DE700505BED /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35D441523859DE700505BED /* ChecklistItem.swift */; };
 		E35D44182385B33A00505BED /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35D44172385B33A00505BED /* ItemDetailViewController.swift */; };
+		E39506B8238D7982003E42DC /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39506B7238D7982003E42DC /* AllListsViewController.swift */; };
+		E39506BA238D86FD003E42DC /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39506B9238D86FD003E42DC /* Checklist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		E3223A53238265A100EC6825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E35D441523859DE700505BED /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		E35D44172385B33A00505BED /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		E39506B7238D7982003E42DC /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
+		E39506B9238D86FD003E42DC /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,10 @@
 				E35D441A2389267F00505BED /* New Group */,
 				E3223A452382659F00EC6825 /* AppDelegate.swift */,
 				E35D44172385B33A00505BED /* ItemDetailViewController.swift */,
+				E39506B7238D7982003E42DC /* AllListsViewController.swift */,
 				E3223A4E238265A100EC6825 /* Assets.xcassets */,
 				E35D441523859DE700505BED /* ChecklistItem.swift */,
+				E39506B9238D86FD003E42DC /* Checklist.swift */,
 				E3223A492382659F00EC6825 /* ChecklistViewController.swift */,
 				E3223A50238265A100EC6825 /* LaunchScreen.storyboard */,
 				E3223A4B2382659F00EC6825 /* Main.storyboard */,
@@ -113,6 +119,7 @@
 				TargetAttributes = {
 					E3223A412382659F00EC6825 = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -152,11 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39506B8238D7982003E42DC /* AllListsViewController.swift in Sources */,
 				E35D44182385B33A00505BED /* ItemDetailViewController.swift in Sources */,
 				E3223A4A2382659F00EC6825 /* ChecklistViewController.swift in Sources */,
 				E3223A462382659F00EC6825 /* AppDelegate.swift in Sources */,
 				E3223A482382659F00EC6825 /* SceneDelegate.swift in Sources */,
 				E35D441623859DE700505BED /* ChecklistItem.swift in Sources */,
+				E39506BA238D86FD003E42DC /* Checklist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DWAQ5NDN9;
 				INFOPLIST_FILE = "$(SRCROOT)/Checklists/New Group/Info.plist";
@@ -309,6 +319,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = minho.Checklists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -318,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DWAQ5NDN9;
 				INFOPLIST_FILE = "$(SRCROOT)/Checklists/New Group/Info.plist";

@@ -13,11 +13,12 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
   
   
  
-  var items = [ChecklistItem]()
+    var items = [ChecklistItem]()
+    var checklist: Checklist!
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
     
 //    let item1 = ChecklistItem()
 //    item1.text = "Walk the dog"
@@ -43,11 +44,13 @@ class ChecklistViewVontroller: UITableViewController,AddItemViewControllerDelega
     
     // Load items
     loadChecklistItems()
+        
+        title = checklist.name
     
-    print("Document folder is \(documentsDirectory())")
-    print("Data file path is \(dataFilePath())")
+//    print("Document folder is \(documentsDirectory())")
+//    print("Data file path is \(dataFilePath())")
     
-    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationItem.largeTitleDisplayMode = .never
   }
   
   
