@@ -703,3 +703,46 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
 - Objects that you define with the keyworld *class* are reference types. 
 - The variable or constant does not contain the actual object, only a reference to the object - the reference is simply the memory location where the object is stored.
+
+
+
+## Chapter 18: UserDefaults
+
+- Yo could store this information in the Checklist.plist file, but for simple settings such as this, there is another option - the **UserDefaults** objects.
+- UsrDefaults works like a *dictionary*, which is a collection object for storing key-value pairs.
+
+<img width="339" alt="스크린샷 2019-11-28 오전 4 02 31" src="https://user-images.githubusercontent.com/48345308/69752130-e9499600-1193-11ea-82fb-fa595895c83d.png">
+
+- You can put objects into the dictionary under a reference key and then retrieve it later using that key. That is, in fact, how Info.plist works.
+- The Info.plist file is read into a dictionary and then iOS uses the various keys to obtain the values. Keys are usually strings but values can be any type of object.
+- To be accurate, UserDefaults isn't a true dictionary, but it certainly acts like one.
+- When you insert new values into UserDefaults , they are saved somewhere in your app's sandbox. So, these values persist even after the app terminates.
+
+
+
+> Equal or identical
+
+- If you use == , you're checking whether two variables have the same value.
+- With === you're checking whether two variables refer to the exact same object.
+
+
+
+> get{} set{} blocks
+
+~~~swift
+var indexOfSelectedChecklist: Int {
+    get {
+      return UserDefaults.standard.integer(forKey: "ChecklistIndex")
+    }
+    
+    set {
+      UserDefaults.standard.set(newValue, forKey: "ChecklistIndex")
+    }
+}
+~~~
+
+- This is an example of a *computed property.*
+- There isn't any storage allocated for this property - so it's not really a variable.
+- Instead, when the app tries to read the value of indexOfSelectedChecklist, the code in the **get** block is performed. And when the app trieds to put a new value into indexOfSelectedChecklist, the **set** block is performed.
+
+- Hiding implementation details is an important object-oriented programming principle, and this is one way to do it.
