@@ -17,6 +17,7 @@
 		DDF1520D20D8D40A009D8F6B /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1520C20D8D40A009D8F6B /* AllListsViewController.swift */; };
 		DDF1520F20D8FFD9009D8F6B /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1520E20D8FFD9009D8F6B /* Checklist.swift */; };
 		DDF1521120D9285F009D8F6B /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1521020D9285F009D8F6B /* ListDetailViewController.swift */; };
+		E398F3E1238EE3E100A757ED /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E398F3E0238EE3E100A757ED /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		DDF1520C20D8D40A009D8F6B /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		DDF1520E20D8FFD9009D8F6B /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		DDF1521020D9285F009D8F6B /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		E398F3E0238EE3E100A757ED /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			children = (
 				DDF1520C20D8D40A009D8F6B /* AllListsViewController.swift */,
 				DD09BA2020CE654E00720D6E /* AppDelegate.swift */,
+				E398F3E0238EE3E100A757ED /* DataModel.swift */,
 				DDF1520E20D8FFD9009D8F6B /* Checklist.swift */,
 				DD6B938620D34159000DDA20 /* ChecklistItem.swift */,
 				DD09BA2220CE654E00720D6E /* ChecklistViewController.swift */,
@@ -158,6 +161,7 @@
 				DD6B938920D5049E000DDA20 /* ItemDetailViewController.swift in Sources */,
 				DDF1520F20D8FFD9009D8F6B /* Checklist.swift in Sources */,
 				DD6B938720D34159000DDA20 /* ChecklistItem.swift in Sources */,
+				E398F3E1238EE3E100A757ED /* DataModel.swift in Sources */,
 				DDF1520D20D8D40A009D8F6B /* AllListsViewController.swift in Sources */,
 				DD09BA2120CE654E00720D6E /* AppDelegate.swift in Sources */,
 			);
@@ -306,7 +310,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QX3779KV49;
 				INFOPLIST_FILE = Checklists/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Checklists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -321,7 +328,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QX3779KV49;
 				INFOPLIST_FILE = Checklists/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Checklists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

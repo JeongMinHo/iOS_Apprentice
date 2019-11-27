@@ -341,6 +341,7 @@ delegate?.addItemViewControllerDidCancel(self)
 
 - Here the ? tells Swift not to send the message if delegate is nil. -> Is there a delegate? Then send the messages.
 - This practice is called *optional chaining* and it's used a lot in Swift.
+- Force unwrapping is the simplest way to deal with optionals, but it comes with some danger: if you're wrong and the optional is nil, the app will crash. Use with caution!
 
 
 
@@ -664,3 +665,41 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 - By writing sender as? Checklist, you tell Swift that it can safely treat sender as a Checklist object, if it can be used as a Checklist object, or to send nil if there is an issue.
 - The main reason you need all these type cast is for interoperability(정보 처리 상호 운용) with the iOS frameworks that are written in Objective-C.
 - Swift is less forgiving about types than Objective-C and requires you to be much more explicit about specifying the types of the various data items you work with.
+
+
+
+## Chapter 17: Improved Data Model
+
+> Programming language constructs
+
+- Most modern programming languages offer at least the following basic building blocks:
+
+1. The ability to remember values by storing things into variables. Some variables are simple, such as Int and Bool. Others can store objects(ChecklistItem, UIButton) or even collections of objects(Array).
+2. The ability to read values from variables and use them for basic arithmetic and comparisons.
+3. The ability to make decisions. You've already senn the if statement, but there is also a switch statement that is shorthand for if with may else ifs.
+4. The ability to group functionality into units such as methods and functions. You can call those methods and receive back a result value that can you can then use in further computations.
+5. The ability to bundle functionality (methods) and data (variables) together into objects.
+6. The ability to execute one or more lines of code inside a **do** block and to **catch** and errors thrown via a **try** statement. (Or, to simply bypass the do block by using a try? statement instead.)
+7. The ability to repeat a set of statements more than once. This is what the **for** in statement as well: **while** and **repeat**. Endlessly repeating things is what computers are good at.
+
+
+
+> Parents and their children
+
+- A parent is an object higher up in some hierarchy; a child is an object lower in the hierarchy.
+- In this case, the "hierarchy" represents the navigation flow between the different screens of the app.
+
+<img width="582" alt="스크린샷 2019-11-27 오후 11 33 47" src="https://user-images.githubusercontent.com/48345308/69732102-5e09d980-116e-11ea-8ee1-fb0fb04fb78b.png">
+
+
+
+> Save changes one app termination
+
+- The ideal place for handling app termination notification is inside the **application delegate.**
+- As its name implies, it is the delegate object for notifications that concern the app as a whole.
+- This is where you receive the "app will terminate" and "app will be suspended" notifications.
+
+
+
+- Objects that you define with the keyworld *class* are reference types. 
+- The variable or constant does not contain the actual object, only a reference to the object - the reference is simply the memory location where the object is stored.
