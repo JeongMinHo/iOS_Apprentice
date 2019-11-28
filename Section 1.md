@@ -19,7 +19,7 @@
   - Xcode will first compile your source code : Swift에서 machine code로 변환해준다.
 - **Navigator area** : the row of icons along the top lets you select a specific navigator.
 - **Storyboard** : contains the design for all of my app's screens and shows the navigation flow in my app from one screen to anther.
-- When Xcode detects an eroor, it switches the pane on the left from the Project navigator, to the **Issue Navigator**, which shows all the errors and warnings that Xcode has found.
+- When Xcode detects an error, it switches the pane on the left from the Project navigator, to the **Issue Navigator**, which shows all the errors and warnings that Xcode has found.
 
 
 
@@ -70,7 +70,7 @@
 
 - iOS offers a lot of building blocks int the form of frameworks of "kits".
 - The UIKit frameworks provides the *user interface controls* such as buttons, labels, and navigation bars. It manages the view controllers and generally takes care of anything else that deals with your app's user interface.
-- Examples of other frameworks are Foundation, which provides many of the basic building blocks for building apps; Core Graphics for drawing basic shapes such as lines, gradients and images on the sreen.
+- Examples of other frameworks are Foundation, which provides many of the basic building blocks for building apps; Core Graphics(CG) for drawing basic shapes such as lines, gradients and images on the sreen.
 - AVFoundation for playing sound and video; and many others.
 - The complete set of frameworks for iOS is known collectively as Cocoa Touch.
 
