@@ -11,17 +11,12 @@ import UIKit
 enum SettingRow: CaseIterable {
     case one
     case two
-    case three
-    case four
-    case five
+
 
     var settingCell: String {
         switch self {
         case .one: return "첫번째"
         case .two: return "두번째"
-        case .three: return "세번째"
-        case .four: return "네번째"
-        case .five: return "다섯번째"
         }
     }
 }
@@ -75,8 +70,26 @@ extension ChattingViewController: UITableViewDataSource {
             cell.chattingImage.image = imageCheck
         }
         
+        tableView.rowHeight = 44;
+    
+        
         return cell
     }
 }
 
+// MARK: - Delegate
 
+extension ChattingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if models[indexPath.row].settingCell == "첫번째" {
+            let viewController = storyboard.instantiateViewController(identifier: "FirstViewController")
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if models[indexPath.row].settingCell == "두번째" {
+            let viewController = storyboard.instantiateViewController(identifier: "SecondViewController")
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+}
