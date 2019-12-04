@@ -9,13 +9,9 @@
 import UIKit
 
 class ChattingCell: UITableViewCell {
-   
-    
-
-    
 
     // MARK: -IBOutlet
-    @IBOutlet var chattingImage: UIImageView!
+//    @IBOutlet var chattingImage: UIImageView!
     @IBOutlet var chattingField: UILabel!
     @IBOutlet var chattingID: UILabel!
     @IBOutlet var chattingTime: UILabel!

@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Chatting: Codable, CodingKey {
-    var stringValue: String
-    
+struct Chatting: Codable {
     init?(stringValue: String) {
-        <#code#>
+        return nil
     }
     
     var intValue: Int?
     
     init?(intValue: Int) {
-        <#code#>
+        return nil
     }
+    
+    var stringValue: String
     
     let roomNumber: Int
     let profileImage: String

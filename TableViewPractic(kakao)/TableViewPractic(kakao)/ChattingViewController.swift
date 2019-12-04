@@ -8,33 +8,31 @@
 
 import UIKit
 
-enum SettingRow: CaseIterable, Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Chatting())
-        self.settingCell = try? container.decode(Int.self, forKey: .roomNumber)
-        self.settingCell = try? container.decode(String.self, forKey: .profileImage)
-        self.settingCell = try? container.decode(String.self, forKey: .profieTitle)
-        self.settingCell = try? container.decode(String.self, forKey: .lastConversation)
-        self.settingCell = try? container.decode(Int.self, forKey: .profileDate)
-        
-        
-        
-    }
-    case one
-    case two
-
-
-    var settingCell: String {
-        switch self {
-        case .one: return "첫번째"
-        case .two: return "두번째"
-        }
-    }
-}
+//enum SettingRow: CaseIterable {
+//
+//    case one
+//    case two
+//
+//
+//    var settingCell: String {
+//        switch self {
+//        case .one: return "첫번째"
+//        case .two: return "두번째"
+//        }
+//    }
+//}
+//
+//struct SettingRow {
+//
+//    var settingCell: Int
+//
+//}
 
 class ChattingViewController: UIViewController {
+    let cellIdentifier: String = "ChattingCell"
+    var models: [Chatting] = []
     
-    var models: [SettingRow] = SettingRow.allCases
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +44,12 @@ class ChattingViewController: UIViewController {
         guard let dataAsset: NSDataAsset = NSDataAsset(name: "Chatting") else {
             return
         }
-        
+
         do {
-            self.models = try jsonDecoder.decode([SettingRow].self, from: dataAsset.data)
+            self.models = try jsonDecoder.decode([Chatting].self, from: dataAsset.data)
         } catch {
             print(error.localizedDescription)
         }
-        
-        
-        
     
     }
 
@@ -72,7 +67,7 @@ class ChattingViewController: UIViewController {
 extension ChattingViewController: UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return self.models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,19 +77,17 @@ extension ChattingViewController: UITableViewDataSource {
             return dequeued
         }
         
-        cell.chattingImage.layer.cornerRadius = 15
+//        cell.chattingImage.layer.cornerRadius = 15x
         
-        cell.getCurrentDateTime()
+//        cell.getCurrentDateTime()
+       
+        let friend: Chatting = self.models[indexPath.row]
+         
+        cell.chattingID.text = friend.profileTitle
+        cell.chattingTime.text = "(\(friend.profileDate))"
+        cell.chattingField.text = friend.lastConversation
+//        cell.chattingImage
         
-        if models[indexPath.row].settingCell == "첫번째" {
-            cell.chattingID.text = "민호"
-            cell.chattingField.text = "나 앱 배포 성공했어!!"
-        } else if models[indexPath.row].settingCell == "두번째" {
-            cell.chattingID.text = "민섭이형"
-            cell.chattingField.text = "민호야 제발 도와줘"
-            let imageCheck = UIImage(named: "minseob.png")
-            cell.chattingImage.image = imageCheck
-        }
         
         cell.separatorInset = UIEdgeInsets.zero
         
@@ -107,18 +100,18 @@ extension ChattingViewController: UITableViewDataSource {
 // MARK: - Delegate
 
 extension ChattingViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if models[indexPath.row].settingCell == "첫번째" {
-            let viewController = storyboard.instantiateViewController(identifier: "FirstViewController")
-            navigationController?.pushViewController(viewController, animated: true)
-        } else if models[indexPath.row].settingCell == "두번째" {
-            let viewController = storyboard.instantiateViewController(identifier: "SecondViewController")
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        if models[indexPath.row].settingCell == 1 {
+//            let viewController = storyboard.instantiateViewController(identifier: "FirstViewController")
+//            navigationController?.pushViewController(viewController, animated: true)
+//        } else if models[indexPath.row].settingCell == 2 {
+//            let viewController = storyboard.instantiateViewController(identifier: "SecondViewController")
+//            navigationController?.pushViewController(viewController, animated: true)
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50

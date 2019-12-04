@@ -111,7 +111,6 @@
                                         <connections>
                                             <outlet property="chattingField" destination="JDN-3q-k3c" id="ZGc-dS-Qsy"/>
                                             <outlet property="chattingID" destination="tsm-1K-mqp" id="T8v-Dq-91c"/>
-                                            <outlet property="chattingImage" destination="Sf2-Wf-hsZ" id="SaZ-Ac-qWj"/>
                                             <outlet property="chattingTime" destination="o6D-K7-Tim" id="Mmz-8z-3Vo"/>
                                         </connections>
                                     </tableViewCell>
