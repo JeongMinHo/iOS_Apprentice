@@ -9,6 +9,10 @@
 import UIKit
 
 class ChattingCell: UITableViewCell {
+   
+    
+
+    
 
     // MARK: -IBOutlet
     @IBOutlet var chattingImage: UIImageView!

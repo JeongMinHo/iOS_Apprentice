@@ -13,8 +13,8 @@
 		E316784B2394199A00D46659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31678492394199A00D46659 /* Main.storyboard */; };
 		E316784D2394199C00D46659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E316784C2394199C00D46659 /* Assets.xcassets */; };
 		E31678502394199C00D46659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E316784E2394199C00D46659 /* LaunchScreen.storyboard */; };
-		E316785A23943B1F00D46659 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E316785923943B1F00D46659 /* Customer.swift */; };
 		E316785C23943C0100D46659 /* ChattingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E316785B23943C0100D46659 /* ChattingCell.swift */; };
+		E3FAED9E239804CE00D584C1 /* Chatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FAED9D239804CE00D584C1 /* Chatting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		E316784C2394199C00D46659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E316784F2394199C00D46659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E31678512394199C00D46659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E316785923943B1F00D46659 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		E316785B23943C0100D46659 /* ChattingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChattingCell.swift; path = ../ChattingCell.swift; sourceTree = "<group>"; };
+		E3FAED9D239804CE00D584C1 /* Chatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 				E31678452394199A00D46659 /* SceneDelegate.swift */,
 				E31678472394199A00D46659 /* ChattingViewController.swift */,
 				E316785B23943C0100D46659 /* ChattingCell.swift */,
-				E316785923943B1F00D46659 /* Customer.swift */,
+				E3FAED9D239804CE00D584C1 /* Chatting.swift */,
 				E31678492394199A00D46659 /* Main.storyboard */,
 				E316784C2394199C00D46659 /* Assets.xcassets */,
 				E316784E2394199C00D46659 /* LaunchScreen.storyboard */,
@@ -146,7 +146,7 @@
 			files = (
 				E316785C23943C0100D46659 /* ChattingCell.swift in Sources */,
 				E31678482394199A00D46659 /* ChattingViewController.swift in Sources */,
-				E316785A23943B1F00D46659 /* Customer.swift in Sources */,
+				E3FAED9E239804CE00D584C1 /* Chatting.swift in Sources */,
 				E31678442394199A00D46659 /* AppDelegate.swift in Sources */,
 				E31678462394199A00D46659 /* SceneDelegate.swift in Sources */,
 			);

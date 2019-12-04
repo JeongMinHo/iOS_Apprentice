@@ -8,7 +8,18 @@
 
 import UIKit
 
-enum SettingRow: CaseIterable {
+enum SettingRow: CaseIterable, Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Chatting())
+        self.settingCell = try? container.decode(Int.self, forKey: .roomNumber)
+        self.settingCell = try? container.decode(String.self, forKey: .profileImage)
+        self.settingCell = try? container.decode(String.self, forKey: .profieTitle)
+        self.settingCell = try? container.decode(String.self, forKey: .lastConversation)
+        self.settingCell = try? container.decode(Int.self, forKey: .profileDate)
+        
+        
+        
+    }
     case one
     case two
 
@@ -30,6 +41,21 @@ class ChattingViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setNavigationController()
+        
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        guard let dataAsset: NSDataAsset = NSDataAsset(name: "Chatting") else {
+            return
+        }
+        
+        do {
+            self.models = try jsonDecoder.decode([SettingRow].self, from: dataAsset.data)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
+        
+    
     }
 
     func setNavigationController() {
@@ -70,7 +96,8 @@ extension ChattingViewController: UITableViewDataSource {
             cell.chattingImage.image = imageCheck
         }
         
-        tableView.rowHeight = 44;
+        cell.separatorInset = UIEdgeInsets.zero
+        
     
         
         return cell
@@ -92,4 +119,12 @@ extension ChattingViewController: UITableViewDelegate {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 }
+
+
+
+
