@@ -9,30 +9,19 @@
 import Foundation
 
 struct Chatting: Codable {
-    init?(stringValue: String) {
-        return nil
-    }
     
-    var intValue: Int?
-    
-    init?(intValue: Int) {
-        return nil
-    }
-    
-    var stringValue: String
-    
-    let roomNumber: Int
-    let profileImage: String
-    let profileTitle: String
-    let lastConversation: String
-    let profileDate: Int
+    let roomNo: Int
+    let profileList: String
+    let title: String
+    let lastConv: String
+    let date: String
 }
 
 /*{
   "roomNo": 1,
   "profileList" : ["https://user-images.githubusercontent.com/14807774/70063560-5abd9480-162b-11ea-9d0c-0f7b9c29f3d2.jpeg"],
-  "title": "엄마",
-  "lastConv": "아들 취업 축하해~",
+  "title": "민호",
+  "lastConv": "배고프다",
   "date": "2019-12-02 10:20:10"
 } */
 
