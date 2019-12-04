@@ -69,9 +69,11 @@ extension ChattingViewController: UITableViewDataSource {
         cell.chattingTime.text = "(\(friend.date))"
         cell.chattingField.text = friend.lastConv
         
+        // 이렇게 했을때 왜 안되는지 궁금합니다.
 //        let imageData: Data = Data(base64Encoded: friend.profileList) ?? Data.init(count: 0)
 //        cell.chattingImage.image = UIImage(data: imageData)
         
+        // 강제 언래핑 말고 어떻게 해야할지 모르겠어요.
         let imageURL = URL(string: friend.profileList)!
         
         do {
@@ -81,7 +83,7 @@ extension ChattingViewController: UITableViewDataSource {
           print("minho")
         }
         
-//        cell.separatorInset = UIEdgeInsets.zero
+        cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     
