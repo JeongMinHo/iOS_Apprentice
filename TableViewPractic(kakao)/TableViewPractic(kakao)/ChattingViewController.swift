@@ -70,7 +70,8 @@ extension ChattingViewController: UITableViewDataSource {
             cell.chattingImage.image = imageCheck
         }
         
-        tableView.rowHeight = 44;
+        cell.separatorInset = UIEdgeInsets.zero
+        
     
         
         return cell
@@ -92,4 +93,12 @@ extension ChattingViewController: UITableViewDelegate {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 }
+
+
+
+
