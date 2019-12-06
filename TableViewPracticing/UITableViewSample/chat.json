@@ -1,0 +1,46 @@
+{
+    "result": {
+        "ad": {
+            "hasAd": true,
+            "url": "https://series.naver.com/movie/detail.nhn?productNo=3893795",
+            "imageURL": "https://user-images.githubusercontent.com/14807774/70221745-3e853900-178c-11ea-9a0a-53c4796897f5.png"
+        },
+        "rooms": [
+            {
+                "roomNo": 1,
+                "profileList" : ["https://user-images.githubusercontent.com/14807774/70063560-5abd9480-162b-11ea-9d0c-0f7b9c29f3d2.jpeg"],
+                "title": "엄마",
+                "lastConv": "공부는 좀 했니?",
+                "date": "2019-12-02 10:20:10"
+            },
+            {
+              "roomNo": 2,
+              "profileList" : ["https://user-images.githubusercontent.com/14807774/70063613-6c9f3780-162b-11ea-8392-3fe1fdeb1ac8.jpeg"],
+              "title": "정우희",
+              "lastConv": "넌...",
+              "date": "2019-12-01 08:10:27"
+            },
+            {
+              "roomNo": 3,
+              "profileList" : ["https://user-images.githubusercontent.com/14807774/70063645-7a54bd00-162b-11ea-869e-f4d55358c14f.png"],
+              "title": "조유섭",
+              "lastConv": "네 민호형",
+              "date": "2019-12-01 06:23:10"
+            },
+            {
+              "roomNo": 4,
+              "profileList" : ["https://user-images.githubusercontent.com/14807774/70063665-82acf800-162b-11ea-9f2e-1e703591c0da.jpeg"],
+              "title": "윤민섭",
+              "lastConv": "그럼그렇지",
+              "date": "2019-12-12 08:32:10"
+            },
+            {
+              "roomNo": 5,
+              "profileList" : ["https://user-images.githubusercontent.com/14807774/70063658-7f197100-162b-11ea-8fb0-602b80b36e3a.jpeg"],
+              "title": "서아인",
+              "lastConv": "우리..",
+              "date": "2019-12-01 11:21:05"
+            }
+        ]
+    }
+}
