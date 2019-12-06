@@ -9,7 +9,6 @@
 import UIKit
 
 class ChattingViewController: UIViewController {
-//    let cellIdentifier: String = "ChattingCell"
 
     var models: [Chatting] = []
     
@@ -38,6 +37,8 @@ class ChattingViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.shadowImage = UIImage()
     }
+    
+    
 
 }
 
@@ -62,11 +63,10 @@ extension ChattingViewController: UITableViewDataSource {
         
         cell.chattingImage.layer.cornerRadius = 15
         
-        
         let friend: Chatting = self.models[indexPath.row]
 
         cell.chattingID.text = friend.title
-        cell.chattingTime.text = "(\(friend.date))"
+        
         cell.chattingField.text = friend.lastConv
         
         // 이렇게 했을때 왜 안되는지 궁금합니다.

@@ -14,7 +14,7 @@ struct Chatting: Codable {
     let profileList: String
     let title: String
     let lastConv: String
-    let date: String
+    let date: String?
 }
 
 /*{
