@@ -12,6 +12,14 @@ class ChattingViewController: UIViewController {
 
     var models: [Chatting] = []
     
+    
+//    let roomNo: Int
+//    let profileList: String
+//    let title: String
+//    let lastConv: String
+//    let date: String
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,6 +38,10 @@ class ChattingViewController: UIViewController {
         } catch {
             print(error.localizedDescription)
         }
+        
+        
+        
+
      
     }
 
@@ -37,6 +49,8 @@ class ChattingViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.shadowImage = UIImage()
     }
+    
+    
     
     
 
@@ -68,12 +82,6 @@ extension ChattingViewController: UITableViewDataSource {
         cell.chattingID.text = friend.title
         
         cell.chattingField.text = friend.lastConv
-        
-        // 이렇게 했을때 왜 안되는지 궁금합니다.
-//        let imageData: Data = Data(base64Encoded: friend.profileList) ?? Data.init(count: 0)
-//        cell.chattingImage.image = UIImage(data: imageData)
-        
-        // 강제 언래핑 말고 어떻게 해야할지 모르겠어요.
         let imageURL = URL(string: friend.profileList)!
         
         do {
@@ -83,11 +91,31 @@ extension ChattingViewController: UITableViewDataSource {
           print("minho")
         }
         
+        let dateformatter: DateFormatter = {
+            let formatter: DateFormatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateFormat = "yyyy/MM/dd hh:mm:ss"
+            
+            return formatter
+        }()
+        
+        
+        func dateFormatterSetting() {
+            let date: Date = dateformatter.date(from: friend.date) ?? Date()
+            dateformatter.dateFormat = "hh:mm"
+            let dateString: String = dateformatter.string(from: date)
+            return cell.chattingTime.text = dateString
+        }
+        
+        dateFormatterSetting()
+        
+        
         cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     
 }
+
 
 // MARK: - Delegate
 

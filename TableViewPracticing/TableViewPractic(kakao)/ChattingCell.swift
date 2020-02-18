@@ -15,14 +15,6 @@ class ChattingCell: UITableViewCell {
     @IBOutlet var chattingField: UILabel!
     @IBOutlet var chattingID: UILabel!
     @IBOutlet var chattingTime: UILabel!
-    
-    func getCurrentDateTime() {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
-        formatter.dateFormat = "hh:mm"
-        let str = formatter.string(from: Date())
-        chattingTime.text = "\(str)"
-       }
+
 }
 
