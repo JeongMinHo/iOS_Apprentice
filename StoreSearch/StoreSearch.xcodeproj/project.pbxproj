@@ -14,6 +14,8 @@
 		E3875E3B240CBF5B000D4729 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3875E3A240CBF5B000D4729 /* Assets.xcassets */; };
 		E3875E3E240CBF5B000D4729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3875E3C240CBF5B000D4729 /* LaunchScreen.storyboard */; };
 		E3875E4A240D1C30000D4729 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3875E49240D1C30000D4729 /* SearchResult.swift */; };
+		E3875E4C240D2B2C000D4729 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3875E4B240D2B2C000D4729 /* SearchResultCell.xib */; };
+		E3875E4E240D3017000D4729 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3875E4D240D3017000D4729 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E3875E3D240CBF5B000D4729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3875E3F240CBF5B000D4729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3875E49240D1C30000D4729 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		E3875E4B240D2B2C000D4729 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		E3875E4D240D3017000D4729 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				E3875E3A240CBF5B000D4729 /* Assets.xcassets */,
 				E3875E31240CBF58000D4729 /* AppDelegate.swift */,
 				E3875E33240CBF58000D4729 /* SceneDelegate.swift */,
+				E3875E4B240D2B2C000D4729 /* SearchResultCell.xib */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E3875E49240D1C30000D4729 /* SearchResult.swift */,
+				E3875E4D240D3017000D4729 /* SearchResultCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3875E3E240CBF5B000D4729 /* LaunchScreen.storyboard in Resources */,
+				E3875E4C240D2B2C000D4729 /* SearchResultCell.xib in Resources */,
 				E3875E3B240CBF5B000D4729 /* Assets.xcassets in Resources */,
 				E3875E39240CBF58000D4729 /* Main.storyboard in Resources */,
 			);
@@ -177,6 +184,7 @@
 				E3875E32240CBF58000D4729 /* AppDelegate.swift in Sources */,
 				E3875E4A240D1C30000D4729 /* SearchResult.swift in Sources */,
 				E3875E34240CBF58000D4729 /* SceneDelegate.swift in Sources */,
+				E3875E4E240D3017000D4729 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
