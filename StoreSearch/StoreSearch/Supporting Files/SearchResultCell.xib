@@ -52,7 +52,7 @@
                 <outlet property="artworkImageView" destination="iPh-vV-Xos" id="ySB-mZ-w7w"/>
                 <outlet property="nameLabel" destination="0H9-jw-Goc" id="MzQ-Ob-QSO"/>
             </connections>
-            <point key="canvasLocation" x="-341" y="70"/>
+            <point key="canvasLocation" x="-341.25" y="69.718309859154928"/>
         </tableViewCell>
     </objects>
     <resources>
