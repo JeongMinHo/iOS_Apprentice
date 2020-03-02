@@ -87,8 +87,6 @@
 				E3875E3A240CBF5B000D4729 /* Assets.xcassets */,
 				E3875E33240CBF58000D4729 /* SceneDelegate.swift */,
 				E3875E31240CBF58000D4729 /* AppDelegate.swift */,
-				E3875E4B240D2B2C000D4729 /* SearchResultCell.xib */,
-				E3875E53240D531A000D4729 /* NothingFoundCell.xib */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -107,6 +105,8 @@
 			children = (
 				E3875E3C240CBF5B000D4729 /* LaunchScreen.storyboard */,
 				E3875E37240CBF58000D4729 /* Main.storyboard */,
+				E3875E4B240D2B2C000D4729 /* SearchResultCell.xib */,
+				E3875E53240D531A000D4729 /* NothingFoundCell.xib */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
