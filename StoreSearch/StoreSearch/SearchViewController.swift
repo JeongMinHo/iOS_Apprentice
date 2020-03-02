@@ -22,6 +22,28 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     
+    // MARK: - Helper Methods
+    func iTunesURL(searchText: String) -> URL? {
+        
+        guard let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return nil }
+//        let urlString = String(format: "https://itunes.apple.com/search?term=\(encodedText)")
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@",encodedText)
+
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        return url
+    }
+    
+    func performStoreRequest(with url: URL) -> String? {
+        do {
+            return try String(contentsOf: url, encoding: .utf8)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     // MARK: - IBOutlet
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -48,20 +70,24 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        // dismiss KeyBoard
-        searchBar.resignFirstResponder()
+        guard let searchBarText = searchBar.text else { return }
         
+        if !searchBarText.isEmpty {
+            searchBar.resignFirstResponder()
+            
+            hasSearched = true
+            searchResults = []
 
-        if searchBar.text != "A" {
-            for i in 0...2 {
-                let searchResult = SearchResult()
-                searchResult.name = String(format:"Fake Result %d for", i)
-                searchResult.artistName = searchBar.text!
-                searchResults.append(searchResult)
+            guard let url = iTunesURL(searchText: searchBarText) else { return }
+            
+            print("URL: \(url)")
+            
+            if let jsonString = performStoreRequest(with: url) {
+                print("Received JSON string '\(jsonString)'")
             }
+            
+            tableView.reloadData()
         }
-        hasSearched = true
-        tableView.reloadData()
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
