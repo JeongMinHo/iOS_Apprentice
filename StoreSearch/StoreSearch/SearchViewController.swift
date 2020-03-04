@@ -23,31 +23,30 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
     
     // MARK: - Helper Methods
-    func iTunesURL(searchText: String) -> URL? {
+    func iTunesURL(searchText: String, category: Int) -> URL {
         
-        guard let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return nil }
-//        let urlString = String(format: "https://itunes.apple.com/search?term=\(encodedText)")
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200",encodedText)
-//        let urlString = String(format: "https://NOMOREitunes.apple.com/search?term=%@",encodedText)
+        let kind: String
         
-
-        guard let url = URL(string: urlString) else {
-            return nil
+        switch category {
+            case 1: kind = "musicTrack"
+            case 2: kind = "software"
+            case 3: kind = "ebook"
+            case 4: kind = ""
+            default: kind = ""
         }
-        return url
+        
+        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+//        guard let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return nil }
+
+        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=\(kind)"
+        let url = URL(string: urlString)
+        
+        return url!
     }
-    
-//    func performStoreRequest(with url: URL) -> Data? {
-//        do {
-//            return try Data(contentsOf: url)
-//        } catch {
-//            print("Download Error: \(error.localizedDescription)")
-//            showNetworkError()
-//            return nil
-//        }
-//    }
     
     func parse(data: Data) -> [SearchResult] {
         do {
@@ -70,6 +69,14 @@ class SearchViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    // MARK: - IBAction
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        
+        performSearch()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +84,7 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
         
         // TableView Content inset
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         
         // NIB
         var cellNib = UINib(nibName: TableView.cellIdentifier.searchResultCell, bundle: nil)
@@ -95,11 +102,17 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    func performSearch() {
         
         guard let searchBarText = searchBar.text else { return }
         
         if !searchBarText.isEmpty {
             searchBar.resignFirstResponder()
+            
+            dataTask?.cancel()
             
             isLoading = true
             tableView.reloadData()
@@ -107,16 +120,14 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = []
 
-            guard let searchText = searchBar.text,
-                let url = self.iTunesURL(searchText: searchText) else {
-                return
-            }
+           
+            let url = iTunesURL(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             
             let session = URLSession.shared
-            let dataTask = session.dataTask(with: url, completionHandler: { data, response, error in
+            dataTask = session.dataTask(with: url, completionHandler: { data, response, error in
             
-                if let error = error {
-                    print("Failure! \(error.localizedDescription)")
+                if let error = error as NSError?, error.code == -999 {
+                    return
                 } else if let httpResponse = response as? HTTPURLResponse ,
                 httpResponse.statusCode == 200 {
                     if let data = data {
@@ -140,7 +151,7 @@ extension SearchViewController: UISearchBarDelegate {
                 }
 
             })
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
     
