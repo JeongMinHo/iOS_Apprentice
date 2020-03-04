@@ -15,12 +15,14 @@ class SearchViewController: UIViewController {
         struct cellIdentifier {
             static let searchResultCell = "SearchResultCell"
             static let nothingFoundCell = "NothingFoundCell"
+            static let loadingCell = "LoadingCell"
         }
     }
     
     // MARK: - Variable
     var searchResults = [SearchResult]()
     var hasSearched = false
+    var isLoading = false
     
     // MARK: - Helper Methods
     func iTunesURL(searchText: String) -> URL? {
@@ -83,6 +85,9 @@ class SearchViewController: UIViewController {
         
         cellNib = UINib(nibName: TableView.cellIdentifier.nothingFoundCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.cellIdentifier.nothingFoundCell)
+        
+        cellNib = UINib(nibName: TableView.cellIdentifier.loadingCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.cellIdentifier.loadingCell)
     }
 }
 
@@ -96,25 +101,33 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBarText.isEmpty {
             searchBar.resignFirstResponder()
             
+            isLoading = true
+            tableView.reloadData()
+            
             hasSearched = true
             searchResults = []
 
-            guard let url = iTunesURL(searchText: searchBarText) else { return }
+            let queue = DispatchQueue.global()
             
-            print("URL: \(url)")
+            guard let searchText = searchBar.text,
+                let url = self.iTunesURL(searchText: searchText) else {
+                return
+            }
             
-            if let data = performStoreRequest(with: url) {
-                searchResults = parse(data: data)
+            queue.async {
                 
-//                searchResults.sort { (result1, result2) in
-//                    return result1.name.localizedStandardCompare(result2.name) == .orderedAscending
-//                }
-                
-                searchResults.sort { $0.name.localizedStandardCompare($1.name)
-                    == .orderedAscending
+                if let data = self.performStoreRequest(with: url) {
+                    self.searchResults = self.parse(data: data)
+                    self.searchResults.sort { $0 < $1 }
+                    
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+                    return
                 }
             }
-            tableView.reloadData()
+             
         }
     }
     
@@ -127,16 +140,26 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !hasSearched {
-            return 0
-        } else if searchResults.count == 0 {
+        
+        
+        if isLoading {
             return 1
+        } else if !hasSearched {
+            return 0
         } else {
             return searchResults.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableView.cellIdentifier.loadingCell, for: indexPath)
+            
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            return cell
+        } else
      
         if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier: TableView.cellIdentifier.nothingFoundCell, for: indexPath)
@@ -154,6 +177,9 @@ extension SearchViewController: UITableViewDataSource {
                 cell.artistNameLabel.text = "Unknown"
             } else {
                 cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artist, searchResult.type)
+                if let url = URL(string: searchResult.imageSmall), let imageData = try? Data(contentsOf: url) {
+                    cell.artworkImageView.image = UIImage(data: imageData)
+                }
             }
             
             cell.nameLabel.text = searchResult.name
@@ -171,7 +197,7 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if searchResults.count == 0 {
+        if searchResults.count == 0  || isLoading {
             return nil
         } else {
             return indexPath
