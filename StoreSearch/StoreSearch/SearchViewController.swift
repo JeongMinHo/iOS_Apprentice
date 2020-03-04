@@ -105,6 +105,14 @@ extension SearchViewController: UISearchBarDelegate {
             
             if let data = performStoreRequest(with: url) {
                 searchResults = parse(data: data)
+                
+//                searchResults.sort { (result1, result2) in
+//                    return result1.name.localizedStandardCompare(result2.name) == .orderedAscending
+//                }
+                
+                searchResults.sort { $0.name.localizedStandardCompare($1.name)
+                    == .orderedAscending
+                }
             }
             tableView.reloadData()
         }
@@ -141,8 +149,15 @@ extension SearchViewController: UITableViewDataSource {
             }
             
             let searchResult = searchResults[indexPath.row]
+            
+            if searchResults.isEmpty {
+                cell.artistNameLabel.text = "Unknown"
+            } else {
+                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artist, searchResult.type)
+            }
+            
             cell.nameLabel.text = searchResult.name
-            cell.artistNameLabel.text = searchResult.artistName
+            
             return cell
         }
     }
